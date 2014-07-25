@@ -40,8 +40,9 @@
 					id: data
 				});
 			}
-			else{
-				socket.emit('full',id);
+			else if(count(chat.adapter.rooms[data]) >= 2) {
+
+				chat.emit('tooMany', {boolean: true});
 			}
 		});
 
@@ -71,6 +72,9 @@
 					});
 				}
 
+			}
+			else {
+				socket.emit('tooMany', {boolean: true});
 			}
 		});
 

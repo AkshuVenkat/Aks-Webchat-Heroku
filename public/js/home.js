@@ -16,6 +16,7 @@ $(function(){
 		join = $(".join"),
 		chatScreen = $(".chatscreen"),
 		left = $(".left");
+		tooManyPeople = $(".toomanypeople");
 
 	var chatName = $(".name-chat"),
 		leftName = $(".name-left"),
@@ -262,11 +263,18 @@ $(function(){
 				socket.emit('login', {user: name, id: id});
 			});
 		}
+		else {
+			showMessage("tooManyPeople");
+		}
 
 	});
 
-	socket.on('full', function (data){
- 		console.log('Room ' + data + ' is full');
+	socket.on('tooMany', function(data){
+
+		if(data.boolean && name.length === 0) {
+
+			showMessage('tooManyPeople');
+		}
 	});
 
 	socket.on('startChat', function(data){
@@ -421,7 +429,11 @@ $(function(){
 			footer.css('display', 'none');
 			left.fadeIn(1200);
 		}
+		else if(status === "tooManyPeople") {
 
+			section.children().css('display', 'none');
+			tooManyPeople.fadeIn(1200);
+		}
 	}
 
 });
