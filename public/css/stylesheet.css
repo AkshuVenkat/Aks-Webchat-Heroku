@@ -315,7 +315,9 @@ footer {
 	display:none;
 }
 
-
+.toomanypeople {
+	display:none;
+}
 
 footer {
 	display:none;
