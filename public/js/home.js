@@ -271,7 +271,7 @@ $(function(){
 
 	socket.on('tooMany', function(data){
 
-		if(data.boolean && name.length === 0) {
+		if(data.boolean) {
 
 			showMessage('tooManyPeople');
 		}
